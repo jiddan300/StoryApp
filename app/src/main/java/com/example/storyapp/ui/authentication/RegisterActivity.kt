@@ -6,10 +6,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.databinding.ActivityRegisterBinding
-import com.example.storyapp.helper.ViewModelFactory
 import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
@@ -33,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
 
         title = "Register"
 
-        val viewModel = obtainViewModel(this)
+        val viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
         viewModel.isLoading.observe(this) {
             showLoading(it)
@@ -127,12 +125,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun response() {
         finish()
-    }
-
-
-    private fun obtainViewModel(activity: AppCompatActivity): AuthViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(AuthViewModel::class.java)
     }
 
     private fun showLoading(isLoading: Boolean) {
