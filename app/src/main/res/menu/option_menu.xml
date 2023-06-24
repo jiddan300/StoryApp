@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_map"
+        android:title="option menu"
+        android:icon="@drawable/ic_map"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/menu_logout"
         android:title="option logout"
         android:icon="@drawable/ic_baseline_logout_24"

@@ -8,6 +8,10 @@ import com.example.storyapp.databinding.ActivityDetailStoryBinding
 
 class DetailStoryActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_NAME = "extra_name"
+    }
+
     private lateinit var binding: ActivityDetailStoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

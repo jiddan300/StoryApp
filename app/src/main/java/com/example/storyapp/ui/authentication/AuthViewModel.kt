@@ -1,6 +1,5 @@
 package com.example.storyapp.ui.authentication
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +10,7 @@ import com.example.storyapp.api.RegisterUploadResponse
 import retrofit2.Call
 import retrofit2.Response
 
-class AuthViewModel(application: Application) : ViewModel() {
+class AuthViewModel : ViewModel() {
 
     private val _loginDetail = MutableLiveData<LoginResponse>()
     val loginDetail: LiveData<LoginResponse> = _loginDetail

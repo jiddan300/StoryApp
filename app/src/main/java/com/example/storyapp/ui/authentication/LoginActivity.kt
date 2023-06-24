@@ -1,6 +1,5 @@
 package com.example.storyapp.ui.authentication
 
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,7 +9,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityOptionsCompat
 import androidx.datastore.core.DataStore
@@ -22,7 +20,6 @@ import com.example.storyapp.databinding.ActivityLoginBinding
 import com.example.storyapp.helper.PrefViewModel
 import com.example.storyapp.helper.PrefViewModelFactory
 import com.example.storyapp.helper.SettingPreferences
-import com.example.storyapp.helper.ViewModelFactory
 import com.example.storyapp.ui.main.ListStoryActivity
 import java.util.regex.Pattern
 import kotlin.system.exitProcess
@@ -57,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
         val pref = SettingPreferences.getInstance(dataStore)
         val prefViewModel = ViewModelProvider(this, PrefViewModelFactory(pref)).get(PrefViewModel::class.java)
-        val viewModel = obtainViewModel(this)
+        val viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         
         viewModel.isLoading.observe(this) {
             showLoading(it)
@@ -134,11 +131,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             binding.pbLogin.visibility = View.GONE
         }
-    }
-
-    private fun obtainViewModel(activity: AppCompatActivity): AuthViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(AuthViewModel::class.java)
     }
 
     override fun onBackPressed() {

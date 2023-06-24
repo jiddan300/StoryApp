@@ -4,38 +4,40 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+
 data class AllStoriesResponse(
 
 	@field:SerializedName("listStory")
-	val listStory: List<ListStoryItem?>? = null,
+	val ListStoryItem: List<ListStoryItem>,
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String
 )
 @Parcelize
 data class ListStoryItem(
 
 	@field:SerializedName("photoUrl")
-	val photoUrl: String? = null,
+	val photoUrl: String?,
 
 	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
+	val createdAt: String?,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String?,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	val description: String?,
 
 	@field:SerializedName("lon")
-	val lon: Float? = null,
-
-	@field:SerializedName("id")
-	val id: String? = null,
+	val lon: Double,
 
 	@field:SerializedName("lat")
-	val lat: Float? = null
+	val lat: Double,
+
+	@field:SerializedName("id")
+	val id: String?,
+
 ): Parcelable
