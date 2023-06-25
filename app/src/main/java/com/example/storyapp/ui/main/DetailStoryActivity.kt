@@ -19,7 +19,7 @@ class DetailStoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val detailStories = intent.getParcelableExtra<ListStoryItem>("key_user") as ListStoryItem
+        val detailStories = intent.getParcelableExtra<ListStoryItem>("extra_name") as ListStoryItem
         binding.apply {
             tvDetailName.text = detailStories.name
             tvDetailDesc.text = detailStories.description
