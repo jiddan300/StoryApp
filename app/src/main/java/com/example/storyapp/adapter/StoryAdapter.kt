@@ -38,7 +38,7 @@ class StoryAdapter : PagingDataAdapter<ListStoryItem, StoryAdapter.StoryViewHold
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailStoryActivity::class.java).apply {
-                    putExtra(DetailStoryActivity.EXTRA_NAME, story)
+                    putExtra("detail_key", story)
                 }
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(

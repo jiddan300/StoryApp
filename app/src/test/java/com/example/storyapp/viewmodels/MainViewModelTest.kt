@@ -72,15 +72,41 @@ class MainViewModelTest {
         assertEquals(dummyStories, differ.snapshot())
         assertEquals(dummyStories.size, differ.snapshot().size)
         assertEquals(dummyStories[0].name, differ.snapshot()[0]?.name)
+
+        //Memastikan data pertama yang dikembalikan sesuai.
+        assertEquals(dummyStories[0], differ.snapshot()[0])
+
     }
 
-    val noopListUpdateCallback = object : ListUpdateCallback {
+
+    @Test
+    fun `when Get Quote Empty Should Return No Data`() = runTest {
+        val data: PagingData<ListStoryItem> = PagingData.from(emptyList())
+        val expectedQuote = MutableLiveData<PagingData<ListStoryItem>>()
+        expectedQuote.value = data
+        Mockito.`when`(repo.getStory()).thenReturn(expectedQuote)
+
+        val actualStory: PagingData<ListStoryItem> =
+            mainViewModel.getStory().getOrAwaitValue()
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = StoryAdapter.DIFF_CALLBACK,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main,
+        )
+
+        differ.submitData(actualStory)
+        Assert.assertEquals(0, differ.snapshot().size)
+    }
+}
+
+
+val noopListUpdateCallback = object : ListUpdateCallback {
         override fun onInserted(position: Int, count: Int) {}
         override fun onRemoved(position: Int, count: Int) {}
         override fun onMoved(fromPosition: Int, toPosition: Int) {}
         override fun onChanged(position: Int, count: Int, payload: Any?) {}
     }
-}
+
 
 class PagingSourceTest: PagingSource<Int, LiveData<List<ListStoryItem>>>() {
     companion object {

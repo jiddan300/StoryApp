@@ -8,10 +8,6 @@ import com.example.storyapp.databinding.ActivityDetailStoryBinding
 
 class DetailStoryActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_NAME = "extra_name"
-    }
-
     private lateinit var binding: ActivityDetailStoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +15,7 @@ class DetailStoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val detailStories = intent.getParcelableExtra<ListStoryItem>("key_user") as ListStoryItem
+        val detailStories = intent.getParcelableExtra<ListStoryItem>("detail_key") as ListStoryItem
         binding.apply {
             tvDetailName.text = detailStories.name
             tvDetailDesc.text = detailStories.description
